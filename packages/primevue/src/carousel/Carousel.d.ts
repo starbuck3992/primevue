@@ -326,6 +326,11 @@ export interface CarouselProps {
      */
     nextButtonProps?: object | undefined;
     /**
+     * Defines if touch events are disabled
+     * @defaultValue false
+     */
+    disableTouchEvents?: boolean | undefined;
+    /**
      * It generates scoped CSS variables using design tokens for the component.
      */
     dt?: DesignToken<any>;

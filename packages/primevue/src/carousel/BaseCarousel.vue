@@ -58,6 +58,10 @@ export default {
             default: () => {
                 return { severity: 'secondary', text: true, rounded: true };
             }
+        },
+        disableTouchEvents: {
+            type: Boolean,
+            default: false,
         }
     },
     style: CarouselStyle,

@@ -414,28 +414,36 @@ export default {
             }
         },
         onTouchStart(e) {
-            let touchobj = e.changedTouches[0];
+            if (!this.disableTouchEvents) {
+                let touchobj = e.changedTouches[0];
 
-            this.startPos = {
-                x: touchobj.pageX,
-                y: touchobj.pageY
-            };
+                this.startPos = {
+                    x: touchobj.pageX,
+                    y: touchobj.pageY
+                };
+            }
+
         },
         onTouchMove(e) {
-            const touchobj = e.changedTouches[0];
-            const diff = this.isVertical() ? touchobj.pageY - this.startPos.y : touchobj.pageX - this.startPos.x;
+            if (!this.disableTouchEvents) {
+                const touchobj = e.changedTouches[0];
+                const diff = this.isVertical() ? touchobj.pageY - this.startPos.y : touchobj.pageX - this.startPos.x;
 
-            if (Math.abs(diff) > this.swipeThreshold && e.cancelable) {
-                e.preventDefault();
+                if (Math.abs(diff) > this.swipeThreshold && e.cancelable) {
+                    e.preventDefault();
+                }
             }
+
         },
         onTouchEnd(e) {
-            let touchobj = e.changedTouches[0];
+            if (!this.disableTouchEvents) {
+                let touchobj = e.changedTouches[0];
 
-            if (this.isVertical()) {
-                this.changePageOnTouch(e, touchobj.pageY - this.startPos.y);
-            } else {
-                this.changePageOnTouch(e, touchobj.pageX - this.startPos.x);
+                if (this.isVertical()) {
+                    this.changePageOnTouch(e, touchobj.pageY - this.startPos.y);
+                } else {
+                    this.changePageOnTouch(e, touchobj.pageX - this.startPos.x);
+                }
             }
         },
         changePageOnTouch(e, diff) {
